@@ -1,4 +1,4 @@
-# Book Working with algorithms
+# Working with algorithms in Python - Video series by George T. Heineman
 from collections import defaultdict
 from enum import Enum
 

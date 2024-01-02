@@ -1,3 +1,5 @@
+# Count of 1s in a sort binary array
+# https://www.techiedelight.com/find-number-1s-sorted-binary-array/
 from typing import List
 import unittest
 

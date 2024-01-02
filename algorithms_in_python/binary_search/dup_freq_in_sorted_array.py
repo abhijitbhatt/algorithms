@@ -1,3 +1,5 @@
+# Count occurrences of a number in a sorted array with duplicates
+# https://www.techiedelight.com/count-occurrences-number-sorted-array-duplicates/
 from typing import List
 from collections import defaultdict
 

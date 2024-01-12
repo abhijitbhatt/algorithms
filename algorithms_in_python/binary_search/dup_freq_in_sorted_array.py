@@ -23,4 +23,4 @@ def dup_freq(array:List[int]):
 
 print(dup_freq([2, 2, 2, 4, 4, 4, 5, 5, 6, 8, 8, 9]))
 
-#print(dup_freq([0, 0, 0, 2, 2, 2, 2, 2, 2, 3, 3, 4, 5]))
+

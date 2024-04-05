@@ -1,0 +1,99 @@
+digraph G {
+    //
+    // Defaults
+    //
+
+    // Box for entities
+    node [shape=none, margin=0, fontsize=5]
+
+    // One-to-many relation (from one, to many)
+    edge [arrowhead=crow, arrowtail=none, dir=both]
+    rankdir="LR"
+
+    //
+    // Entities
+    //
+    Event [label=<
+        <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+            <tr><td bgcolor="lightblue">Event</td></tr>
+            <tr><td align="left">Event Date/time</td></tr>
+            <tr><td align="left">User ID</td></tr>
+            <tr><td align="left">Workspace ID</td></tr>
+            <tr><td align="left">Board ID</td></tr>
+            <tr><td align="left">Event...</td></tr>
+        </table>
+    >]
+
+    Workspace [label=<
+        <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+            <tr><td bgcolor="lightblue" colspan="2">Workspace</td></tr>
+            <tr><td bgcolor="lightblue">Column</td><td bgcolor="lightblue">Comment</td></tr>
+            <tr><td align="left">Workspace ID</td><td align="left"></td></tr>
+            <tr><td align="left">company</td><td align="left"></td></tr>
+            <tr><td align="left">plan type</td><td align="left">Allowable values - paid, free..</td></tr>
+            <tr><td align="left">...</td><td align="left">...</td></tr>
+        </table>
+    >]
+
+    Company [label=<
+        <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+
+            <tr><td bgcolor="lightblue">Company</td></tr>
+            <tr><td align="left">Company ID</td></tr>
+            <tr><td align="left">company</td></tr>
+            <tr><td align="left">...</td></tr>
+        </table>
+    >]
+
+    User [label=<
+        <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+            <tr><td bgcolor="lightblue" colspan="2">Workspace</td></tr>
+            <tr><td bgcolor="lightblue">Column</td><td bgcolor="lightblue">Comment</td></tr>
+            <tr><td align="left">User ID</td><td align="left"></td></tr>
+            <tr><td align="left">user name</td><td align="left"></td></tr>
+            <tr><td align="left">user email</td><td align="left"></td></tr>
+            <tr><td align="left">user type</td><td align="left">...</td></tr>
+        </table>
+    >]
+
+     Date [label=<
+        <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+
+            <tr><td bgcolor="lightblue">Date</td></tr>
+            <tr><td align="left">..</td></tr>
+        </table>
+    >]
+
+     Board[label=<
+        <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+
+            <tr><td bgcolor="lightblue">Board</td></tr>
+            <tr><td align="left">..</td></tr>
+        </table>
+    >]
+
+     Aggregation[shape="circle" style="filled" fillcolor="lightblue"]
+
+    Agg_Event [label=<
+        <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+            <tr><td bgcolor="lightblue">Engaged User Aggregate</td></tr>
+            <tr><td align="left">Event Date</td></tr>
+            <tr><td align="left">User Catgory</td></tr>
+            <tr><td align="left">Plan type</td></tr>
+            <tr><td align="left"># User</td></tr>
+        </table>
+    >]
+
+    Agg_comment [shape="note" fillcolor="yellow" style="filled" label="Determines user category\n based on x events within \nn days\n"]
+    //
+    // Relationships
+    //
+    Workspace->Event;
+    Company->Event;
+    User -> Event;
+    Date -> Event;
+    Board -> Event;
+    Event -> Aggregation [arrowhead="normal"];
+    Aggregation -> Agg_Event[arrowhead="normal"];
+    Agg_comment -> Aggregation [arrowhead="none" style="dashed"]
+}

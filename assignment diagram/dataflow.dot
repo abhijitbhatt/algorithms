@@ -19,7 +19,7 @@ digraph G {
     color=blue;
     fontsize=10;
   }
-
+  
   subgraph cluster_2 {
     node [style=filled];
     b4 [shape="Mrecord" label="Redshift to \nDatabricks migration" fontsize=8]
@@ -27,12 +27,12 @@ digraph G {
     color=blue;
     fontsize=10;
   }
-
-  a1 -> b1 [label="event data (hourly)" fontsize=8]
-  b1 -> b2 -> b4
+ 
+  a1 -> b1 [label="event data (hourly)" fontsize=8] 
+  b1 -> b2 -> b4 
   a0 -> b0 [label="entity data (daily) " fontsize=8]
   b0 -> b4
-
+ 
 
 
 

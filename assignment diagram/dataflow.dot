@@ -1,0 +1,39 @@
+digraph G {
+  rankdir="LR"
+  subgraph cluster_0 {
+    style=filled;
+    color=lightgrey;
+    node [style=filled,color=white];
+    a0 [shape="Mrecord" label="Mural API" fontsize=8];
+    a1 [shape="Mrecord" label="Mongo DB" fontsize=8];
+    label = "Operational System";
+    fontsize=10;
+  }
+
+  subgraph cluster_1 {
+    node [style=filled color="lightblue"];
+    b0 [shape="Mrecord" label="segment.io" fontsize=8];
+    b1 [shape="Mrecord" label="Mongo Export" fontsize=8];
+    b2 [shape="Mrecord" label="ELT" fontsize=8]
+    label = "Data Collection";
+    color=blue;
+    fontsize=10;
+  }
+
+  subgraph cluster_2 {
+    node [style=filled];
+    b4 [shape="Mrecord" label="Redshift to \nDatabricks migration" fontsize=8]
+    label = "Data Warehouse";
+    color=blue;
+    fontsize=10;
+  }
+
+  a1 -> b1 [label="event data (hourly)" fontsize=8]
+  b1 -> b2 -> b4
+  a0 -> b0 [label="entity data (daily) " fontsize=8]
+  b0 -> b4
+
+
+
+
+}

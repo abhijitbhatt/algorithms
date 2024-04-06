@@ -1,0 +1,106 @@
+digraph G {
+    //
+    // Defaults
+    //
+
+    // Box for entities
+    node [shape=none, margin=0, fontsize=10]
+
+    // One-to-many relation (from one, to many)
+    edge [arrowhead=crow, arrowtail=none, dir=both]
+    rankdir="LR"
+
+    //
+    // Entities
+    //
+    Event [label=<
+        <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+            <tr><td bgcolor="lightblue">Event</td></tr>
+        </table>
+    >]
+
+    Workspace [label=<
+        <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+            <tr><td bgcolor="lightblue" colspan="3">Workspace</td></tr>
+            <tr><td bgcolor="lightblue">Name</td><td bgcolor="lightblue">2020-01-01</td><td bgcolor="lightblue">2020-03-12</td></tr>
+            <tr><td>id</td><td>W1</td><td>W1</td></tr>
+            <tr><td>company_name</td><td>IBM</td><td>IBM</td></tr>
+            <tr><td>plan_type</td><td>Free</td><td>Paid</td></tr>
+            <tr><td>start_date</td><td>2020-01-01</td><td>2020-03-12</td></tr>
+            <tr><td>end_date</td><td>2020-03-12</td><td>Null</td></tr>
+            <tr><td>curent_record</td><td>False</td><td>True</td></tr>
+
+        </table>
+    >]
+
+    Company [label=<
+        <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+            <tr><td bgcolor="lightblue">Company</td></tr>
+        </table>
+    >]
+
+    User [label=<
+        <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+            <tr><td bgcolor="lightblue" colspan="1">User</td></tr>
+        </table>
+    >]
+
+     Date [label=<
+        <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+
+            <tr><td bgcolor="lightblue">Date</td></tr>
+            <tr><td align="left">..</td></tr>
+        </table>
+    >]
+
+     Board[label=<
+        <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+
+            <tr><td bgcolor="lightblue">Board</td></tr>
+            <tr><td align="left">..</td></tr>
+        </table>
+    >]
+
+    Transformation[shape="circle" style="filled" fillcolor="lightblue"]
+
+    Aggregation[shape="circle" style="filled" fillcolor="lightblue"]
+
+    Categorized_User [label=<
+        <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+            <tr><td bgcolor="lightblue" colspan="3">Categorized User</td></tr>
+            <tr><td bgcolor="lightblue">Name</td><td bgcolor="lightblue">2020-01-01</td><td bgcolor="lightblue">2020-03-15</td></tr>
+            <tr><td align="left">User ID</td><td align="left">U1</td><td align="left">U1</td></tr>
+            <tr><td align="left">Plan type</td><td align="left">..</td><td align="left">..</td></tr>
+            <tr><td align="left">User category</td><td align="left">Casual</td><td align="left">Core</td></tr>
+            <tr><td>start_date</td><td>2020-01-01</td><td>2020-03-15</td></tr>
+            <tr><td>end_date</td><td>2020-03-15</td><td>Null</td></tr>
+            <tr><td>curent_record</td><td>False</td><td>True</td></tr>
+        </table>
+    >]
+
+    Agg_Event [label=<
+        <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
+            <tr><td bgcolor="lightblue">Engaged User Aggregate</td></tr>
+            <tr><td align="left">Date</td></tr>
+            <tr><td align="left">User Catgory</td></tr>
+            <tr><td align="left">Plan type</td></tr>
+            <tr><td align="left"># User</td></tr>
+        </table>
+    >]
+
+    Workspace_comment [shape="note" fontsize=9fillcolor="yellow" style="filled" label="Not key/value store\nRepresented this way to conserve space"]
+    Categorized_User_comment [shape="note" fontsize=9fillcolor="yellow" style="filled" label="User categoy changed on 03/12\n\nNow user categorization logic changes\nRestatement is asked for period 01-Mar to 31-Mar"]
+    //
+    // Relationships
+    //
+    Workspace->Event;
+    Company->Event;
+    User -> Event;
+    Date -> Event;
+    Board -> Event;
+    Event -> Transformation [arrowhead="normal"];
+    Transformation -> Categorized_User [arrowhead="normal"];
+    Categorized_User -> Aggregation -> Agg_Event[arrowhead="normal"];
+    Workspace_comment -> Workspace [arrowhead="none" style="dashed"]
+    Categorized_User_comment -> Categorized_User [arrowhead="none" style="dashed"]
+}

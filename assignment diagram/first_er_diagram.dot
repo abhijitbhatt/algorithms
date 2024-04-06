@@ -47,7 +47,7 @@ digraph G {
     
     User [label=<
         <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
-            <tr><td bgcolor="lightblue" colspan="1">Workspace</td></tr>
+            <tr><td bgcolor="lightblue" colspan="1">User</td></tr>
             <tr><td align="left">User ID</td></tr>
             <tr><td align="left">user name</td></tr>
             <tr><td align="left">user email</td></tr>
@@ -71,19 +71,9 @@ digraph G {
         </table>
     >]
     
-    Transformation[shape="circle" style="filled" fillcolor="lightblue"]
      
-    Aggregation[shape="circle" style="filled" fillcolor="lightblue"]
+    ETL[shape="circle" style="filled" fillcolor="lightblue"]
      
-    Categorized_User [label=<
-        <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
-            <tr><td bgcolor="lightblue">Categorized User</td></tr>
-            <tr><td align="left">Event Date</td></tr>
-            <tr><td align="left">User ID</td></tr>
-            <tr><td align="left">Plan type</td></tr>
-            <tr><td align="left">User category</td></tr>
-        </table>
-    >]
      
     Agg_Event [label=<
         <table border="0" cellborder="1" cellspacing="0" cellpadding="4">
@@ -95,7 +85,8 @@ digraph G {
         </table>
     >]
     
-    Agg_comment [shape="note" fontsize=9fillcolor="yellow" style="filled" label="Determines user category\n based on x events within \nn days in a sliding window\n"]
+    etl_comment [shape="note" fontsize=9fillcolor="yellow" style="filled" label="Materialize user level categorization\nmay help in analytical queries"]
+    Agg_comment [shape="note" fontsize=9fillcolor="yellow" style="filled" label="Determines user category\n based on x events within \nn days in a sliding window\nAggregates data to final table"]
     //  
     // Relationships
     //  
@@ -104,8 +95,7 @@ digraph G {
     User -> Event;
     Date -> Event;
     Board -> Event;
-    Event -> Transformation [arrowhead="normal"];
-    Transformation -> Categorized_User [arrowhead="normal"];
-    Categorized_User -> Aggregation -> Agg_Event[arrowhead="normal"];
-    Agg_comment -> Transformation [arrowhead="none" style="dashed"]
+    Event -> ETL -> Agg_Event[arrowhead="normal"];
+    Agg_comment -> ETL [arrowhead="none" style="dashed"]
+    etl_comment -> ETL[arrowhead="none" style="dashed"];
 }

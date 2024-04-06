@@ -1,0 +1,49 @@
+digraph G {
+  node [shape=none, margin=0, fontsize=8]
+  rankdir="LR"
+  subgraph cluster_0 {
+    style=filled;
+    color=lightgrey;
+    node [style=filled,color=white];
+    mural_api [shape="Mrecord" label="Mural API"];
+    mongo_db [shape="Mrecord" label="Mongo DB"];
+    label = "Operational System";
+    fontsize=10;
+  }
+
+  subgraph cluster_1 {
+    node [style=filled color="lightblue"];
+    segment_io [shape="Mrecord" label="segment.io"];
+    mongo_export [shape="Mrecord" label="Mongo Export"];
+    staging [shape="cylinder" label="Staging\nSchema"]
+
+    label = "Data Ingestion";
+    color=blue;
+    fontsize=10;
+  }
+
+  subgraph cluster_2 {
+    node [style=filled];
+    redshift [shape="cylinder" label="Redshift"]
+    label = "Data Warehouse";
+    color=blue;
+    fontsize=10;
+  }
+
+  subgraph cluster_3 {
+    node [style=filled];
+    ETL [shape="circle" label="ETL\nDBT"]
+    ingestion [shape="circle" label="Ingestion"]
+    label = "Astronomer";
+    color=blue;
+    fontsize=10;
+  }
+
+  mongo_db -> mongo_export [label="event data (hourly)" fontsize=8]
+  mongo_export -> ingestion
+  mural_api -> segment_io [label="entity data (daily) " fontsize=8]
+  segment_io -> staging
+  ingestion -> staging -> ETL -> redshift
+
+
+}

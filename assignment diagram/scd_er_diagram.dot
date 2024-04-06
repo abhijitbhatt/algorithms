@@ -88,8 +88,8 @@ digraph G {
         </table>
     >]
 
-    Workspace_comment [shape="note" fontsize=9fillcolor="yellow" style="filled" label="Not key/value store\nRepresented this way to conserve space"]
-    Categorized_User_comment [shape="note" fontsize=9fillcolor="yellow" style="filled" label="User categoy changed on 03/12\n\nNow user categorization logic changes\nRestatement is asked for period 01-Mar to 31-Mar"]
+    Workspace_comment [shape="note" fontsize=9fillcolor="yellow" style="filled" label="Not key/value store\nRepresented this way for screen real estate"]
+    Categorized_User_comment [shape="note" fontsize=9fillcolor="yellow" style="filled" label="Materialization of user level data\n\nUser transitions category on 03/15\nbased on event data\n\nLater user categorization logic changes\nRestatement is requested for period:\n 01-Mar to 31-Mar"]
     //
     // Relationships
     //
